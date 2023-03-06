@@ -22,9 +22,9 @@ serve(async (req) => {
             },
             body: new URLSearchParams([["source", source], ["target", target], ["text", text]])
         });
-        let respJson = await resp.json();
+        let respText = await resp.text();
         return new Response(
-            respJson,
+            respText,
             {
                 headers: {
                     "Access-Control-Allow-Origin": "*"
