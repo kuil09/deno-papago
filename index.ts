@@ -22,12 +22,14 @@ serve(async (req) => {
             },
             body: new URLSearchParams([["source", source], ["target", target], ["text", text]])
         });
-        let respText = await resp.text();
+        let respJson = await resp.json();
         return new Response(
-            `
-            JP: ${JSON.parse(respText).message.result.translatedText}
-            KR: ${text}
-            `
+            respJson,
+            {
+                headers: {
+                    "Access-Control-Allow-Origin": "*"
+                }
+            }
         );
     } catch (ex) {
         console.log(ex);
